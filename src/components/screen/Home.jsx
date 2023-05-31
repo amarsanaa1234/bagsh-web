@@ -18,6 +18,7 @@ import Time from '../tools/Time';
 
 
 function Home() {
+  
 
   const bull = (
     <Box

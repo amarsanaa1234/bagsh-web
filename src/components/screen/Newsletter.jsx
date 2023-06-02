@@ -11,6 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import axios from '../../axios-orders';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -19,8 +20,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 function Newsletter({isAuth}) {
 
+  // const [postList, setPostList] = useState([]);
+  const postsCollectionRef = collection(db, "posts");
   const [open, setOpen] = React.useState(false);
-
+  const [postList, setPostList] = useState([]);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -29,17 +32,15 @@ function Newsletter({isAuth}) {
     setOpen(false);
   };
 
-  const [postList, setPostList] = useState([]);
-  const postsCollectionRef = collection(db, "posts");
-
 
   useEffect(() =>{
-    const getPosts = async()=>{
-      const data = await getDocs(postsCollectionRef);
-      setPostList(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
-      console.log(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
-    }
-    getPosts();
+    // const getPosts = async()=>{
+    //   const data = await getDocs(postsCollectionRef);
+    //   setPostList(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+    //   console.log(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+    // }
+    // getPosts();
+    getNews();
   }, []); 
 
   const deletePost = async (id)=>{
@@ -47,9 +48,48 @@ function Newsletter({isAuth}) {
     await deleteDoc(postDoc);
   }
 
+  const getNews =  () =>{
+    if(localStorage.getItem("idToken")){
+      axios.get("news.json").then((res)=>{ 
+        const data = Object.entries(res.data).reverse();  
+        console.log("data: ", data)
+        setPostList(data);
+      }).catch((err)=>{
+        console.log("err", err);
+      })
+    } 
+}
+const deleteFunc = (params) =>{  
+  const token = localStorage.getItem("idToken"); 
+  axios.delete(`news/${params}.json?&auth=${token}`).then((res)=>{  
+    alert("Амжилттай устлаа") 
+    getNews();
+  }).catch((err)=>{ 
+    getNews();
+  }) 
+}
+const editFunc = (e) =>{
+  const token = localStorage.getItem("idToken"); 
+  const body = { 
+    localId: localStorage.getItem("localId"),
+    newsList: { 
+      // title: e[1].newsList.title,
+      title: "amraaaa",
+      postText: "description",
+      img: ""
+    }
+}  
+  axios.patch(`news/${e[0]}.json?&auth=${token}`, body).then((res)=>{  
+    alert("Амжилттай")   
+      getNews();
+  }).catch((err)=>{  
+    console.log("err")
+  }) 
+
+}
   return (
     <div className='homePage'>
-      {postList.map((post, index)=>{
+      {/* {postList.map((post, index)=>{
         return (
           <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -89,7 +129,20 @@ function Newsletter({isAuth}) {
           //   </div>
           // </div>
         )
-      })}
+      })} */}
+      {postList.length === 0 ? null : <> 
+      {postList.map((e)=>(
+        <div style={{margin: "10px", background: "#ccc"}}> 
+          <div>title: {e[1].newsList.title}</div>
+          <div>postText: {e[1].newsList.postText}</div> 
+          <div> <img src={e[1].newsList.img ? e[1].newsList.img :  ""} width={300}/></div>
+          <div><button onClick={()=>deleteFunc(e[0])}>delete</button> </div>
+          <div> <button onClick={()=>editFunc(e)}>edit</button></div>
+        </div>
+      ))}
+      </>
+    }
+
     </div>
   )
 }

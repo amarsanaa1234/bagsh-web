@@ -11,10 +11,10 @@ function Teams() {
     <div>
         <div>
             <Typography gutterBottom variant='h5' style={{marginTop: '100px'}}>
-                Our Staff
+                Манай ажилтнууд
             </Typography>
-            <Typography gutterBottom variant="h3" style={{marginTop: '30px'}}>
-                Working to Keep Pets Happy and Healthy Together
+            <Typography gutterBottom variant="h4" style={{marginTop: '30px'}}>
+                Гэрийн тэжээвэр амьтдыг хамтдаа аз жаргалтай, эрүүл байлгахын төлөө ажиллах
             </Typography>
         </div>
         <Grid container style={{margin: 'auto 50px auto 0px', width: '100%'}} spacing={{ xs: 1, sm: 3, md: 8 }} columns={{ xs: 2, sm: 8, md: 16 }}>

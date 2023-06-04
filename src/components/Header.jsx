@@ -13,9 +13,10 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from '../image/logo.png';
 import logoMini from '../image/logoMini.png';
 import {Link} from 'react-router-dom';
+import Fade from '@mui/material/Fade';
 
 
-const pages = ['Home', 'Бидний тухай', 'Шинэ үйлчлүүлэгч'];
+const pages = ['Home', 'Шинэ үйлчлүүлэгч'];
 const settings = ['Үйлчилгээ', 'Мэдээлэл', 'Захиалга өгөх', 'Урамшуулал', 'Хүний нөөц', 'Байршил цагийн хуваарь', 'Холбоо барих', 'Асуулт'];
 
 function Header() {
@@ -40,6 +41,15 @@ function Header() {
 
   const handleChange = (event) => {
     setAge(event.target.value);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -95,7 +105,7 @@ function Header() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to={`/${page}`} style={{textDecoration: 'none', color: 'white'}}>
+                    <Link to={`/${page}`} style={{textDecoration: 'none', color: 'black'}}>
                         {page}
                     </Link>
                   </Typography>
@@ -133,6 +143,37 @@ function Header() {
                 </Link>
               </Button>
             ))}
+            <Button
+              id="fade-button"
+              aria-controls={open ? 'fade-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+                Бидний тухай
+            </Button>
+            <Menu
+              id="fade-menu"
+              MenuListProps={{
+                'aria-labelledby': 'fade-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem onClick={handleClose}>
+                    <Link to={'/Meet the Team'} style={{textDecoration: 'none', color: 'black'}}>
+                      Meet the Team
+                    </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                    <Link to={'/Бидний тухай'} style={{textDecoration: 'none', color: 'black'}}>
+                      Бидний тухай
+                    </Link>
+              </MenuItem>
+            </Menu>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

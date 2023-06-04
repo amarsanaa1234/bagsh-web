@@ -29,14 +29,14 @@ function Footer ({isAuth, setIsAuth}) {
     <div className="footer">
       <div>
         <div className="footer-content">
-          <h3
+          <div
             style={{
               fontFamily: "Trebuchet MS",
               fontSize: "2em"
             }}
           >
-            <img src={Image} alt="" />
-          </h3>
+            <img src={Image} alt="" width={'50%'} />
+          </div>
           <div className="sub">
             <p>
               <b>For Foodies</b>

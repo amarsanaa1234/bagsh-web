@@ -16,6 +16,7 @@ import Service from './components/screen/Service';
 import Login from './components/tools/Login';
 import Footer from './components/tools/Footer';
 import CreatePost from './components/tools/CreatePost';
+import Team from './components/screen/Team';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path='Асуулт' element={<FAC/>}/>
         <Route path='login' element={<Login setIsAuth={setIsAuth} />}/>
         <Route path='createPost' element={<CreatePost isAuth={isAuth}/>}/>
+        <Route path='Meet the Team' element={<Team/>}/>
       </Routes>
       <Footer isAuth={isAuth} setIsAuth={setIsAuth}/>
     </div>

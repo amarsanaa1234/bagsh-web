@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   AiFillFacebook,
   AiFillTwitterCircle,
@@ -16,6 +16,16 @@ import {auth} from '../../firebase-config';
 
 
 function Footer ({isAuth, setIsAuth}) {
+  
+const [login, setLogin] = useState(false);
+
+const logout  = () =>{ 
+  localStorage.removeItem("idToken")
+  localStorage.removeItem("localId")
+  localStorage.removeItem("refreshToken")
+  localStorage.removeItem("expireDate")
+  document.location.replace("/");
+}
 
     const signUserOut = () => {
         signOut(auth).then(()=>{
@@ -44,20 +54,20 @@ function Footer ({isAuth, setIsAuth}) {
               <p>Community</p>
             </p>
             <p>
-                {!isAuth ? (
+                {!isAuth ? 
                     <Link to="/login">
-                        <Button variant="contained" >Admin Login</Button>
+                        <Button variant="contained">Admin Login</Button>
                     </Link>
-                    ) : ( 
+                     : 
                     <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                        <Link to="/Home">
+                          <Button variant="contained" onClick={() => logout()}>Admin out</Button>
+                        </Link>
                         <Link to="/createPost">
                             <Button variant="contained">Create Posts</Button>
                         </Link>
-                        <Button variant="contained" onClick={()=>signUserOut()}>
-                            Admin Out
-                        </Button>
                     </div>
-                )}
+                }
             </p>
             <p>
               <b>For You</b>

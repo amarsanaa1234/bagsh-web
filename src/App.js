@@ -17,6 +17,7 @@ import Login from './components/tools/Login';
 import Footer from './components/tools/Footer';
 import CreatePost from './components/tools/CreatePost';
 import Team from './components/screen/Team';
+import Details from './components/screen/details';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
         <Route path='login' element={<Login setIsAuth={setIsAuth} />}/>
         <Route path='createPost' element={<CreatePost isAuth={isAuth}/>}/>
         <Route path='Meet the Team' element={<Team/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='details/:id' element={<Details/>}/>
       </Routes>
       <Footer isAuth={isAuth} setIsAuth={setIsAuth}/>
     </div>

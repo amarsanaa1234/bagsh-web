@@ -28,6 +28,7 @@ const CreatePost = ({isAuth}) => {
   const [catLabel, setCatLabel] = useState("");
     const [title, setTitle] = useState('');
     const [postText, setPostText] = useState('');
+    const [subText, setSubText] = useState('');
 
     const [fileList, setFileList] = useState([]);
  
@@ -51,6 +52,7 @@ const sendPost = () =>{
     localId: localStorage.getItem("localId"),
     newsList: {
       title,
+      subText,
       postText,
       img: fileList[0].thumbUrl,
     }
@@ -102,6 +104,13 @@ const handleCancel = () => {
             onChange={(event) => {
                 setTitle(event.target.value);
               }}/>
+        </div>
+        <div className='inputGp'>
+            <label>subText: </label>
+            <textarea placeholder='SubText...' 
+            onChange={(event) => {
+              setSubText(event.target.value);
+            }}/>
         </div>
         <div className='inputGp'>
             <label>Post: </label>

@@ -1,22 +1,47 @@
 import React, {useState} from 'react'
 import Time from './../tools/Time';
-import { Box, Button, Stack, TextField } from '@mui/material';
+import '../../App.css';
+import {db} from '../../firebase-config';
+import { addDoc, collection } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
 
 function Contact() {
   
-  const [firstName, setFirstName] = useState('')
-    const [email, setEmail] = useState('')
-    const [multiline, setMultiline] = useState('')
-    const [number, setNumber] = useState()
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [text, setText] = useState("");
+    const [emailError, setEmailError] = useState(false)
+
+    const userCollectionRef = collection(db, "contactData");
+    let navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+      event.preventDefault()
  
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(firstName, email, setMultiline, number) 
+        setEmailError(false)
+ 
+        if (email == '') {
+            setEmailError(true)
+        }
+
+      await addDoc(userCollectionRef,{
+        name,
+        email,
+        text,
+      }).then(()=>{
+        navigate("/");
+      }).catch((err)=>{
+        console.error('err',err);
+      });
     }
+ 
 
 
   return (
-    <div className='flex_box'>
+    <div className='flex_box client'>
       <div className='flex_title'>
         <h1>Холбоо барих</h1>
       </div>
@@ -25,57 +50,46 @@ function Contact() {
         <p>5550 Morehouse Dr.</p>
         <p>San Diego, CA 92121</p>
         <p>Phone: 800-462-8749</p>
-        <div>
-        <h2>Register Form</h2>
-            <form onSubmit={handleSubmit} >
-                <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
-                    <TextField
-                        type="text"
-                        variant='outlined'
-                        color='secondary'
-                        label="First Name"
-                        onChange={e => setFirstName(e.target.value)}
-                        value={firstName}
-                        fullWidth
-                        required
-                    />
-                </Stack>
+        {/* <div> */}
+        <form autoComplete="off" onSubmit={handleSubmit} style={{backgroundColor:'white', padding: 30, borderRadius: 20,}}>
+            <h2>Login Form</h2>
                 <TextField
-                    type="email"
-                    variant='outlined'
-                    color='secondary'
-                    label="Email"
-                    onChange={e => setEmail(e.target.value)}
-                    value={email}
-                    fullWidth
-                    required
-                    sx={{mb: 4}}
-                />
-                <TextField
-                    type="number"
-                    variant='outlined'
-                    color='secondary'
-                    label="Number"
-                    onChange={e => setNumber(e.target.value)}
-                    value={number}
-                    fullWidth
-                    required
-                    
-                  />
-                <TextField
-                    label="Multiline"
+                    id="outlined-multiline-flexible"
+                    label="Name"
                     multiline
+                    type="text"
+                    sx={{mb: 3}}
                     fullWidth
-                    variant='outlined'
-                    minRows={3}
-                    color='secondary'
-                    defaultValue=" "
-                    onChange={e => setMultiline(e.target.value)}
-                    style={{margin: '40px 0px 40px 0px'}}
+                    onChange={(event) => {
+                      setName(event.target.value);
+                    }}
                   />
-                <Button variant="outlined" color="secondary" type="submit">Register</Button>
-            </form>
-        </div>
+                <TextField 
+                    label="Email"
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                    required
+                    variant="outlined"
+                    color="secondary"
+                    type="email"
+                    sx={{mb: 3}}
+                    fullWidth
+                    value={email}
+                    error={emailError}
+                 />
+                 <TextField
+                    id="outlined-multiline-static"
+                    label="Text Area"
+                    multiline
+                    sx={{mb: 3}}
+                    fullWidth
+                    onChange={(event) => {
+                      setText(event.target.value);
+                    }}
+                  />
+                 <Button variant="outlined" color="secondary" type="submit">Submit</Button>
+        </form>
       </div>
       <Time/>
     </div>

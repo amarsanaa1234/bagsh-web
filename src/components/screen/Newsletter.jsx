@@ -253,8 +253,7 @@ const uploadButton = (
     </div> */}
   </div>
 );
-const onFinish = (values) => {   
-  console.log('data', values)
+const onFinish = (values) => {
   // setLoading(true);
   const token = localStorage.getItem("idToken");
   const img = []; 
@@ -311,7 +310,7 @@ let navigate = useNavigate();
             </div>
             <div className='news_title'>
               <h2>{e[1].newsList.title}</h2>
-              <p>{e[1].newsList.postText}</p> 
+              <p>{e[1].newsList.subText}</p> 
               <Button onClick={() => {
                 navigate(`/details/${index}`);
               }}>илүү ихийг унших</Button>

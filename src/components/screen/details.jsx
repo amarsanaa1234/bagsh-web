@@ -10,23 +10,29 @@ function Details() {
   const postId = Number(id)
 
   useEffect(() =>{
-    getNews();
+    getItemList();
   }, []); 
 
-  const getNews =  () =>{
-    if(localStorage.getItem("idToken")){
-      axios.get("news.json").then((res)=>{ 
+  const getItemList = () =>{ 
+    const token = localStorage.getItem("idToken")
+    // setLoadingTable(true); 
+    axios.get('news.json').then((res)=>{ 
         const data = Object.entries(res.data).reverse();  
         setPostList(data);
-      }).catch((err)=>{
-        console.log("err", err);
-      })
-    } 
-}
+    }).catch((err)=>{
+        console.log("err: ", err)
+    }).finally(()=>{
+      // setLoadingTable(false)
+    }) 
+  }
+console.log(postList);
 let navigate = useNavigate();
  
   return (
-    <div>
+    <div className='flex_box'>
+      <div className='flex_title'>
+        <h1>BLOG</h1>
+      </div>
       {postList.map((item, index)=>{
         return(
           <div key={index}>

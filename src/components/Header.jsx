@@ -104,11 +104,11 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link to={`/${page}`} style={{textDecoration: 'none', color: 'black'}}>
+                  <Link to={`/${page}`} style={{textDecoration: 'none', color: 'black'}}>
+                    <Typography textAlign="center">
                         {page}
-                    </Link>
-                  </Typography>
+                    </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -133,15 +133,15 @@ function Header() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Link to={`/${page}`} style={{textDecoration: 'none', color: 'white'}}>
+              <Link to={`/${page}`} style={{textDecoration: 'none', color: 'white'}}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
                     {page}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
             <Button
               id="fade-button"
@@ -163,23 +163,23 @@ function Header() {
               onClose={handleClose}
               TransitionComponent={Fade}
             >
-              <MenuItem onClick={handleClose}>
-                    <Link to={'/Meet the Team'} style={{textDecoration: 'none', color: 'black'}}>
-                      Meet the Team
-                    </Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                    <Link to={'/Бидний тухай'} style={{textDecoration: 'none', color: 'black'}}>
-                      Бидний тухай
-                    </Link>
-              </MenuItem>
+              <Link to={'/Meet the Team'} style={{textDecoration: 'none', color: 'black'}}>
+                <MenuItem onClick={handleClose}>
+                  Meet the Team
+                </MenuItem>
+              </Link>
+              <Link to={'/Бидний тухай'} style={{textDecoration: 'none', color: 'black'}}>
+                <MenuItem onClick={handleClose}>
+                  Бидний тухай
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Button
-                sx={{ my: 2, color: 'white', display: 'block' }}>Үйлчилгээ</Button>
+                sx={{ my: 2, color: 'white', display: 'block' }}>Nemu</Button>
               </IconButton>
             </Tooltip>
             <Menu
@@ -199,11 +199,13 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
+                  <Link to={`/${setting}`} style={{color: '#2F92EF', textDecoration: 'none'}}>
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    <Link to={`/${setting}`} style={{color: '#2F92EF', textDecoration: 'none'}}>{setting}</Link>
-                  </Typography>
+                    <Typography textAlign="center">
+                      {setting}
+                    </Typography>
                 </MenuItem>
+                  </Link>
               ))}
             </Menu>
           </Box>

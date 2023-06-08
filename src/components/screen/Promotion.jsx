@@ -6,7 +6,7 @@ function Promotion() {
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>Урамшуулал</h1>
+        <h1 className='components_title'>Урамшуулал</h1>
       </div>
       <div className='Promotion'>
         <h1 className='promotion_title'>УРАМШУУЛЛЫН ДЭЛГЭРЭНГҮЙ НӨХЦӨЛ</h1>
@@ -23,7 +23,7 @@ function Promotion() {
             буцаан олголтын урамшууллаа хэрэглэгч та худалдан авалт болон гүйлгээ 
             хийхдээ ашиглах боломжтой.
           </p>
-          <h1>УРАМШУУЛЛЫН ДЭЛГЭРЭНГҮЙ НӨХЦӨЛ</h1>
+          <h1 className='promotion_title'>УРАМШУУЛЛЫН ДЭЛГЭРЭНГҮЙ НӨХЦӨЛ</h1>
           <p>Та төлбөрөө monpay апликейшн, эсвэл mobicom апликейшн → MonPay дансаар сар бүрийн</p>
           <ul>
             <li>5-10-ны дотор төлөхөд 10%,</li>

@@ -6,12 +6,12 @@ import clientImage from '../../image/clientImage.webp'
 function Client() {
   return (
     <div className='flex_box client'>
-      <div className='flex_title'>
-        <h1>Шинэ үйлчлүүлэгч</h1>
+      <div className='flex_title components_title'>
+        <h1 className='components_title'>Шинэ үйлчлүүлэгч</h1>
       </div>
       <div className='client_box'>
           <div>
-            <img src={clientImage} alt="" />
+            <img src={clientImage} alt="" width={'100%'}/>
           </div>
           <div>
             <h3>Шинэ үйлчлүүлэгч</h3>

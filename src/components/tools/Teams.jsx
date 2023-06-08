@@ -18,9 +18,8 @@ function Teams() {
             </Typography>
         </div>
         <Grid container style={{margin: 'auto 50px auto 0px', width: '100%'}} spacing={{ xs: 1, sm: 3, md: 8 }} columns={{ xs: 2, sm: 8, md: 16 }}>
-                <Grid item xs={2} sm={4} md={4}>
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardActionArea>
+                <Grid item xs={2} sm={4} md={4} className='flex_center'>
+                    <Card sx={{ maxWidth: 345,}}>
                             <CardMedia
                             component="img"
                             height="auto"
@@ -35,12 +34,10 @@ function Teams() {
                                 Veterinary Assistant
                             </Typography>
                             </CardContent>
-                        </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4}>
+                <Grid item xs={2} sm={4} md={4} className='flex_center'>
                     <Card sx={{ maxWidth: 345 }}>
-                        <CardActionArea>
                             <CardMedia
                             component="img"
                             height="auto"
@@ -55,12 +52,10 @@ function Teams() {
                                 Appointments
                             </Typography>
                             </CardContent>
-                        </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4}>
+                <Grid item xs={2} sm={4} md={4} className='flex_center'>
                     <Card sx={{ maxWidth: 345 }}>
-                        <CardActionArea>
                             <CardMedia
                             component="img"
                             height="auto"
@@ -75,12 +70,10 @@ function Teams() {
                                 Doctor/ Owner
                             </Typography>
                             </CardContent>
-                        </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid item xs={2} sm={4} md={4}>
+                <Grid item xs={2} sm={4} md={4} className='flex_center'>
                     <Card sx={{ maxWidth: 345 }}>
-                        <CardActionArea>
                             <CardMedia
                             component="img"
                             height="auto"
@@ -95,7 +88,6 @@ function Teams() {
                                 Technician
                             </Typography>
                             </CardContent>
-                        </CardActionArea>
                     </Card>
                 </Grid>
         </Grid>

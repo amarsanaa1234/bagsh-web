@@ -6,7 +6,7 @@ function About() {
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>About Us</h1>
+        <h1 className='components_title'>About Us</h1>
       </div>
       <div className='about_text'>
         <p>

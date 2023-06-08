@@ -7,7 +7,7 @@ function Team() {
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>Meet the Team</h1>
+        <h1 className='components_title'>Meet the Team</h1>
       </div>
       <Teams/>
       <Time/>

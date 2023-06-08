@@ -7,7 +7,7 @@ function Service() {
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>Үйлчилгээ</h1>
+        <h1 className='components_title'>Үйлчилгээ</h1>
       </div>
       <div className='service'>
         <p>
@@ -17,7 +17,7 @@ function Service() {
         patient. These are the mobile services we offer for your furry companions.
         </p>
         <div>
-          <h1>
+          <h1 className='service_title'>
             Харагдсан тэжээвэр амьтдын төрлүүд
           </h1>
           <p>
@@ -33,12 +33,12 @@ function Service() {
           </ul>
         </div>
         <div>
-          <h1>
+          <h1 className='service_title'>
             Бид Anderson Mobile Veterinary Care-д дараах үйлчилгээг санал болгож байгаадаа таатай байна.
           </h1>
           <div className='serviceImage'>
             <div>
-              <h1>
+              <h1 className='service_title'>
                 Шалгалт
               </h1>
               <p>
@@ -52,7 +52,7 @@ function Service() {
                 сэргийлэх боломжтой. Хэрэв өвчин илэрвэл эрт илрүүлэх нь таны тэжээвэр амьтдыг 
                 бүрэн эдгэрэх хамгийн сайн боломж юм.
               </p>
-              <h1>
+              <h1 className='service_title'>
                 Вакцинжуулалт
               </h1>
               <p>
@@ -61,7 +61,7 @@ function Service() {
                 Бид танай гэрт бүх стандартын вакциныг хүргэж өгөх боломжтой.
               </p>
             </div>
-            <div>
+            <div className='service_image'>
               <img src={serviceImage} alt="image"/>
             </div>
           </div>
@@ -69,7 +69,7 @@ function Service() {
         {serviceData.map((item, index)=>{
           return(
             <div key={index}>
-              <h1>{item.title}</h1>
+              <h1 className='service_title'>{item.title}</h1>
               <p>{item.text}</p>
             </div>
           )

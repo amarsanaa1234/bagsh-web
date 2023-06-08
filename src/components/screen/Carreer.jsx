@@ -8,11 +8,11 @@ function Carreer() {
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>Хүний нөөц</h1>
+        <h1 className='components_title'>Хүний нөөц</h1>
       </div>
       <div className='carreer_box'>
         <div className='carreer'>
-          <div>
+          <div className='carreer_image'>
             <img src={image1} alt="" width={450}/>
           </div>
           <div className='carreer_text'>
@@ -42,12 +42,12 @@ function Carreer() {
               шинэ үеийн залуустай хамтран ажиллахад бид бэлэн.
             </p>
           </div>
-          <div>
+          <div className='carreer_image'>
             <img src={image2} alt="" width={450}/>
           </div>
         </div>
         <div className='carreer'>
-          <div>
+          <div className='carreer_image'>
             <img src={image3} alt="" width={450}/>
           </div>
           <div className='carreer_text'>

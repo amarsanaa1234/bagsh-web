@@ -1,57 +1,76 @@
 import React, {useState} from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import Time from './../tools/Time';
 import "../../App.css";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+
 
 function FAC() {
 
-  const [open1, setOpen1] = useState(false);
-  const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(false);
-  const [open4, setOpen4] = useState(false);
+  const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+    border: `1px solid ${theme.palette.divider}`,
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+  }));
 
-  const handleOpen1 = () => setOpen1(true);
-  const handleClose1 = () => setOpen1(false);
-  const handleOpen2 = () => setOpen2(true);
-  const handleClose2 = () => setOpen2(false);
-  const handleOpen3 = () => setOpen3(true);
-  const handleClose3 = () => setOpen3(false);
-  const handleOpen4 = () => setOpen4(true);
-  const handleClose4 = () => setOpen4(false);
+  const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+      expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? 'rgba(255, 255, 255, .05)'
+        : 'rgba(0, 0, 0, .03)',
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+      transform: 'rotate(90deg)',
+    },
+    '& .MuiAccordionSummary-content': {
+      marginLeft: theme.spacing(1),
+    },
+  }));
+
+  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    padding: theme.spacing(2),
+    borderTop: '1px solid rgba(0, 0, 0, .125)',
+  }));
+
+  const [expanded, setExpanded] = React.useState('panel1');
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
 
   return (
     <div className='flex_box'>
       <div className='flex_title'>
-        <h1>Түгээмэл асуулт & хариулт</h1>
+        <h1 className='components_title'>Түгээмэл асуулт & хариулт</h1>
       </div>
       <div className='FAQ_btn'>
-        <Button variant="contained" onClick={handleOpen1}>1. Бүртгүүлэх/Нэвтрэх заавар</Button>
-        <Modal
-          open={open1}
-          onClose={handleClose1}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" component="h2">
-              shoppy.mn-д бүртгүүлэхийн тулд хэрэглэгчийн профайл хэсэг дэх “нэвтрэх” товч дээр дарна.
-            </Typography>
+
+      <div className='faq_box'>
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>shoppy.mn-д бүртгүүлэхийн тулд хэрэглэгчийн профайл хэсэг дэх “нэвтрэх” товч дээр дарна.</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
             <ul>
               <li>
                 Фэйсбүүк хаягаар шууд нэвтэрнэ эсвэл ашигладаг и-мэйл хаягаа оруулна.
@@ -60,73 +79,62 @@ function FAC() {
                 Бүртгүүлэх/Нэвтрэх нууц үгээ оруулаад нэвтэрнэ.
               </li>
             </ul>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <p>
               Хэрэглэгч shoppy.mn - д бүртгүүлэх үед цахим шуудангийн хаяг болон хэрэглэгчийн 
               үүсгэсэн нууц үг системд хадгалагдана. Хэрэглэгчийн оруулсан нууц үгийг систем 
               шифрлэн кодчилж хадгалах тул хэрэглэгчээс өөр хүн нууц үгийг мэдэх боломжгүй юм.
+              </p>
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+          <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+            <Typography>Нууц үгээ мартсан бол яах вэ?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              “Нууц үг сэргээх” товч дээр дарж бүртгэлтэй и-мэйл хаягаар ирсэн баталгаажуулах 
+              кодыг оруулна. Шинээр нууц үг оруулаад нэвтэрнэ.
+              <ul>
+                <li>
+                  Фэйсбүүк хаягаар шууд нэвтэрнэ эсвэл ашигладаг и-мэйл хаягаа оруулна.
+                </li>
+                <li>
+                  Бүртгүүлэх/Нэвтрэх нууц үгээ оруулаад нэвтэрнэ.
+                </li>
+              </ul>
             </Typography>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Нууц үгээ мартсан бол яах вэ?
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            “Нууц үг сэргээх” товч дээр дарж бүртгэлтэй и-мэйл хаягаар ирсэн баталгаажуулах 
-            кодыг оруулна. Шинээр нууц үг оруулаад нэвтэрнэ.
-            </Typography>
-          </Box>
-        </Modal>
-        <Button variant="contained" onClick={handleOpen2}>2. Захиалга яаж баталгаажих вэ?</Button>
-        <Modal
-          open={open2}
-          onClose={handleClose2}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <ul>
-              <li>
-                Фэйсбүүк хаягаар шууд нэвтэрнэ эсвэл ашигладаг и-мэйл хаягаа оруулна.
-              </li>
-              <li>
-                Бүртгүүлэх/Нэвтрэх нууц үгээ оруулаад нэвтэрнэ.
-              </li>
-            </ul>
-          </Box>
-        </Modal>
-        <Button variant="contained" onClick={handleOpen3}>3. Захиалгаа цуцлах боломжтой юу?</Button>
-        <Modal
-          open={open3}
-          onClose={handleClose3}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" component="h2">
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+          <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+            <Typography>Захиалгаа цуцлах боломжтой юу?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
               shoppy.mn-д бүртгүүлэхийн тулд хэрэглэгчийн профайл хэсэг дэх “нэвтрэх” товч дээр дарна.
+              <ul>
+                <li>
+                  Фэйсбүүк хаягаар шууд нэвтэрнэ эсвэл ашигладаг и-мэйл хаягаа оруулна.
+                </li>
+                <li>
+                  Бүртгүүлэх/Нэвтрэх нууц үгээ оруулаад нэвтэрнэ.
+                </li>
+              </ul>
             </Typography>
-            <ul>
-              <li>
-                Фэйсбүүк хаягаар шууд нэвтэрнэ эсвэл ашигладаг и-мэйл хаягаа оруулна.
-              </li>
-              <li>
-                Бүртгүүлэх/Нэвтрэх нууц үгээ оруулаад нэвтэрнэ.
-              </li>
-            </ul>
-          </Box>
-        </Modal>
-        <Button variant="contained" onClick={handleOpen4}>4. Захиалгын төлбөрөө хэрхэн төлөх вэ?</Button>
-        <Modal
-          open={open4}
-          onClose={handleClose4}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" component="h2">
-              shoppy.mn-д бүртгүүлэхийн тулд хэрэглэгчийн профайл хэсэг дэх “нэвтрэх” товч дээр дарна.
-            </Typography>
-            
-          </Box>
-        </Modal>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+        <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+          <Typography>Захиалгын төлбөрөө хэрхэн төлөх вэ?</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            shoppy.mn-д бүртгүүлэхийн тулд хэрэглэгчийн профайл хэсэг дэх “нэвтрэх” товч дээр дарна.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+      </div>
       </div>
       <Time/>
     </div>

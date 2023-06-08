@@ -43,14 +43,13 @@ function Contact() {
   return (
     <div className='flex_box client'>
       <div className='flex_title'>
-        <h1>Холбоо барих</h1>
+        <h1 className='components_title'>Холбоо барих</h1>
       </div>
       <div className='contact'>
         <h1>Anderson Mobile Veterinary Care</h1>
         <p>5550 Morehouse Dr.</p>
         <p>San Diego, CA 92121</p>
         <p>Phone: 800-462-8749</p>
-        {/* <div> */}
         <form autoComplete="off" onSubmit={handleSubmit} style={{backgroundColor:'white', padding: 30, borderRadius: 20,}}>
             <h2>Login Form</h2>
                 <TextField

@@ -53,7 +53,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: 'info.main' }}>
+    <AppBar position="static" sx={{ bgcolor: '#0B2447' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -151,7 +151,7 @@ function Header() {
               onClick={handleClick}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-                Бидний тухай
+                About us
             </Button>
             <Menu
               id="fade-menu"
@@ -179,7 +179,7 @@ function Header() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Button
-                sx={{ my: 2, color: 'white', display: 'block' }}>Nemu</Button>
+                sx={{ my: 2, color: 'white', display: 'block' }}>Menu</Button>
               </IconButton>
             </Tooltip>
             <Menu

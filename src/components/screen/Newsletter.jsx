@@ -300,7 +300,13 @@ const onFinish = (values) => {
 let navigate = useNavigate();
 
   return (
-    <div className='homePage'>
+    <div>
+      <div className='flex_box'>
+      <div className='flex_title'>
+        <h1 className='components_title'>BLOG</h1>
+      </div>
+      </div>
+      <div className='homePage'>
       {postList.length === 0 ? 
       <>
         {itemList.map((e, index)=>(
@@ -368,6 +374,7 @@ let navigate = useNavigate();
       </>
     }
 
+    </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 .footer {
     position: relative;
     margin: 0px;
-    background-color: #f5f5f5;
+    background-color: #A5D7E8;
     padding: 0px;
   }
   
@@ -10,7 +10,7 @@
     justify-content: space-around;
     flex-direction: column;
     text-align: left;
-    margin: 10px;
+    padding: 10px;
   }
   
   .sub {
@@ -24,7 +24,11 @@
   
   @media screen and (max-width: 720px) {
     .sub {
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
     }
+    
   }
   

@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Image from '../../image/background1.jpg';
+import Image from '../../image/Background.jpg.webp';
 import image from '../../image/backgound11.webp';
 import '../../App.css';
 import { Typography } from '@mui/material';
@@ -50,26 +50,26 @@ function Home() {
   return (
     <div>
     <div style={styles.paperContainer}>
-        <Box sx={{ width: '100%', height: '100vh' }}>
+        <Box sx={{ width: '100%', height: '100vh' }} className='home'>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             style={{flexWrap: 'inherit', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}
             >
-            <Grid item xs={8} style={{marginTop: '200px'}}>
+            <Grid item xs={8} style={{marginTop: '200px'}} className='home_text'>
               <p style={styles.text}>Туршлагатай явуулын мал эмнэлгийн мэргэжилтнүүд</p>
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="h3" gutterBottom style={styles.title}>
+              <Typography variant="h3" gutterBottom style={styles.title} className='home_title'>
                 Бид бүх тэжээвэр амьтдад аялах хэрэгтэй
               </Typography>
             </Grid>
             <Grid item xs={6} style={{marginTop: '100px'}}>
-              <Button variant="contained">Уулзалтын хуваарь</Button>
+              <Button variant="contained">Холбоо барих</Button>
             </Grid>
           </Grid>
         </Box>
         <Grid sx={{ flexGrow: 4 }} container spacing={8}>
           <Grid item xs={12}>
-            <Grid container justifyContent="space-around" flexWrap={'wrap'} gap={'20px'} spacing={8} style={{width: '100%', marginLeft: '0px'}}>
+            <Grid className='home_card' container justifyContent="space-around" flexWrap={'wrap'} gap={'20px'} spacing={8} style={{width: '100%', marginLeft: '0px'}}>
               <Card sx={{ maxWidth: 350, minWidth: 275}}>
                 <CardContent>
                   <LocalPhoneIcon fontSize="large"/>
